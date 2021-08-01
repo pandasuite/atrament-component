@@ -2,56 +2,40 @@
   "version": "2.0.0",
   "main": "",
 
-  "system": {
-    "localization": false,
-    "actions": [
-      {
-        "id": "toMarker",
-        "name": "Change Image",
-        "locale_name": {
-          "fr_FR": "Change Image"
-        },
-        "params": [
-          { "id": "useless", "name": "Useless", "locale_name": {"fr_FR": "Inutile"}, "type": "Boolean" }
-        ]
-      }
-    ],
-    "events": [
-      {
-        "id": "triggerMarker",
-        "name": "Image",
-        "locale_name": {
-          "fr_FR": "Image"
-        }
-      }
-    ],
-    "markers": [
-      {
-        "params": [
-          { "id": "src", "name": "Source", "locale_name": {"fr_FR": "Source"}, "type": "String" }
-        ]
-      }
-    ]
-  },
-
   "properties": [
     {
-      "id": "searchTerm",
-      "name": "Search Term",
+      "id": "adaptiveStroke",
+      "name": "Adaptive Stroke",
       "locale_name": {
-        "fr_FR": "Terme de recherche"
+        "fr_FR": "Accélération adaptative"
       },
-      "type": "String",
-      "value": "panda"
+      "type": "Boolean",
+      "value": true
+    },
+    {
+      "id": "smoothing",
+      "name": "Smoothing",
+      "locale_name": {
+        "fr_FR": "Lissage"
+      },
+      "type": "Float",
+      "value": 0.85
     }
   ],
 
   "events": [
     {
-      "id": "imageChanged",
-      "name": "Image Changed",
+      "id": "dirty",
+      "name": "Dirty",
       "locale_name": {
-        "fr_FR": "Image Changée"
+        "fr_FR": "Sale"
+      }
+    },
+    {
+      "id": "clean",
+      "name": "Clean",
+      "locale_name": {
+        "fr_FR": "Propre"
       }
     }
   ],
@@ -62,33 +46,94 @@
       "name": "Change Color",
       "params": [
         {
-          "id": "backgroundColor",
-          "name": "Background Color",
+          "id": "color",
+          "name": "Color",
           "locale_name": {
-            "fr_FR": "Couleur de fond"
+            "fr_FR": "Couleur"
           },
-          "type": "String",
-          "value": "#FFFFFF"
+          "type": "Color",
+          "value": "#000000",
+          "bindable": true
         }
       ]
-    }
-  ],
-
-  "synchronization": [
+    },
     {
-      "id": "synchroImages",
-      "name": "Synchronize images",
+      "id": "changeWeight",
+      "name": "Change Weight",
       "locale_name": {
-        "fr_FR": "Synchroniser images"
-      }
-    }
-  ],
-
-  "resources": [
+        "fr_FR": "Changer épaisseur"
+      },
+      "params": [
+        {
+          "id": "weight",
+          "name": "Weight",
+          "locale_name": {
+            "fr_FR": "Épaisseur"
+          },
+          "type": "Integer",
+          "value": 20,
+          "bindable": true
+        }
+      ]
+    },
     {
-      "id": "my_image.png",
-      "type": "Image",
-      "localization": false
+      "id": "changeMode",
+      "name": "Change mode",
+      "locale_name": {
+        "fr_FR": "Changer Mode"
+      },
+      "params": [
+        {
+          "id": "mode",
+          "type": "Dropdown",
+          "value": "forward",
+          "items": [
+            {
+              "id": "erase",
+              "name": "Eraser",
+              "locale_name": {
+                "fr_FR": "Gomme"
+              }
+            },
+            {
+              "id": "fill",
+              "name": "Fill area",
+              "locale_name": {
+                "fr_FR": "Zone de remplissage"
+              }    
+            },
+            {
+              "id": "draw",
+              "name": "Draw",
+              "locale_name": {
+                "fr_FR": "Dessin"
+              }    
+            },
+            {
+              "id": "disabled",
+              "name": "Disabled",
+              "locale_name": {
+                "fr_FR": "Désactivé"
+              }    
+            }
+          ],
+          "bindable": true
+        }
+      ]
+    },
+    {
+      "id": "undo",
+      "name": "Undo",
+      "locale_name": {
+        "fr_FR": "Annuler"
+      }
+    },
+    {
+      "id": "clear",
+      "name": "Clear",
+      "locale_name": {
+        "fr_FR": "Effacer"
+      }
     }
   ]
 }
