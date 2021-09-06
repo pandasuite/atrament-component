@@ -47,8 +47,19 @@ PandaBridge.init(() => {
   /* Actions */
 
   PandaBridge.listen('changeColor', ([params]) => {
-    const { color } = params || {};
+    let { color } = params || {};
+    let alpha = 1;
 
+    // extract alpha color from hex color
+    const m = color && color.match(/^(#[0-9a-f]{6})([0-9a-f]{2})$/i);
+    if (m) {
+      // eslint-disable-next-line prefer-destructuring
+      color = m[1];
+      if (m[2]) {
+        alpha = parseInt(m[2], 16) / 255;
+      }
+    }
+    sketchpad.context.globalAlpha = alpha;
     sketchpad.color = color;
   });
 
